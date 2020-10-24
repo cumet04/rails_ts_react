@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   scope format: false do
     root "home#index"
+
+    resources :posts, only: [:index, :show]
   end
 end
 

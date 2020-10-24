@@ -56,6 +56,9 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.1)
     better_errors (2.8.3)
       coderay (>= 1.0.0)
@@ -185,6 +188,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   better_errors
   binding_of_caller
   bootsnap (>= 1.4.2)

@@ -4,6 +4,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
   config.consider_all_requests_local = true
 
+  config.log_level = :warn
+
   config.cache_store = :null_store
   config.action_dispatch.show_exceptions = false
   config.action_controller.allow_forgery_protection = false
