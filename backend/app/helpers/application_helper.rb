@@ -5,6 +5,6 @@ module ApplicationHelper
   end
 
   def prop_data_json
-    raw((@_view_props || {}).to_json)
+    (@_view_props || {}).to_json
   end
 end
