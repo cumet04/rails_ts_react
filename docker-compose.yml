@@ -21,6 +21,17 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build:
+      context: ./frontend
+    command: npm run dev
+    volumes:
+      - "./frontend:/app/frontend"
+      - "./backend/public/assets:/app/backend/public/assets"
+      - /app/frontend/node_modules
+    ports:
+      - "3001:3001"
+
   db:
     image: mariadb:10.3
     environment:
