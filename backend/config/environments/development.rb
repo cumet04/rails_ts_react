@@ -6,6 +6,11 @@ Rails.application.configure do
   BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
 
   config.log_level = :debug
+  config.log_tags = []
+  config.log_formatter = proc do |severity, datetime, progname, msg|
+    time = datetime.strftime("%H:%M:%S:%L")
+    "[#{severity}] #{time} : #{msg}\n"
+  end
   config.active_support.deprecation = :stderr
   config.active_record.verbose_query_logs = true
 
