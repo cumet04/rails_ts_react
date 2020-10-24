@@ -3,6 +3,7 @@ Rails.application.configure do
   config.eager_load = false
   config.action_controller.perform_caching = false
   config.consider_all_requests_local = true
+  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
 
   config.log_level = :debug
   config.active_support.deprecation = :stderr
