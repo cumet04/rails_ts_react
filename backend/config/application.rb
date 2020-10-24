@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 require "active_model/railtie"
@@ -20,8 +20,8 @@ module Backend
     config.action_controller.perform_caching = true
 
     config.log_level = :info
-    config.log_tags = [ :request_id ]
-    config.logger = ActiveSupport::Logger.new(STDOUT)
+    config.log_tags = [:request_id]
+    config.logger = ActiveSupport::Logger.new($stdout)
     config.log_formatter = ::Logger::Formatter.new
     config.action_view.logger = nil
 
