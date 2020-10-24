@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "node bundler.js dev",
     "check": "tsc --noEmit",
-    "build": "npm run check && node bundler.js"
+    "build": "npm run check && node bundler.js",
+    "gen-imports": "node lib/gen-imports.js"
   },
   "dependencies": {
     "@types/react": "^16.9.53",
