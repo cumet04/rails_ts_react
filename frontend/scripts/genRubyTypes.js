@@ -42,7 +42,7 @@ const output = ((schemas) => {
 
 // write .rb
 
-const typefile = resolve("..", "backend", "lib", "type.rb");
+const typefile = resolve("..", "backend", "lib", "page_prop_types.rb");
 console.log(`generate ${typefile}`);
 output.then((output) => {
   fs.writeFileSync(typefile, output.lines.join("\n"));
