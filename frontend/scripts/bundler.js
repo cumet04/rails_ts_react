@@ -2,7 +2,7 @@ const { resolve } = require("path");
 const esbuild = require("esbuild");
 
 const env = process.argv[2] == "dev" ? "dev" : "production";
-const srcPath = "src";
+const srcPath = "./src";
 const distPath = "../backend/public/assets";
 
 const buildOpts = {

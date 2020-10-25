@@ -4,7 +4,7 @@ type UserInfo = {
   name: string;
 };
 
-type Props = {
+export type Props = {
   user: UserInfo;
 };
 

@@ -3,10 +3,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "node bundler.js dev",
+    "dev": "node scripts/bundler.js dev",
     "check": "tsc --noEmit",
-    "build": "npm run check && node bundler.js",
-    "gen-imports": "node lib/gen-imports.js"
+    "build": "npm run check && node scripts/bundler.js",
+    "gen-types": "node scripts/genRubyTypes.js",
+    "gen-mappings": "node scripts/genMappings.js"
   },
   "dependencies": {
     "@types/react": "^16.9.53",
@@ -24,6 +25,8 @@
   "devDependencies": {
     "chokidar": "^3.4.3",
     "livereload": "^0.9.1",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "quicktype-core": "^6.0.69",
+    "typescript-json-schema": "^0.43.0"
   }
 }
