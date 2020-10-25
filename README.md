@@ -27,7 +27,7 @@ rubyコードの生成はquicktypeでできるはずなので試みた。生成�
 ##### JSON Schema validation on ruby
 そこでJSON Schemaを使ってcontrollerの出力json(hash)をバリデーションする方向を試みた。
 
-[Ruby JSON Schema Validator](https://github.com/ruby-json-schema/json-schema)というのがあったので実施したのが現在のコード。  
+[Ruby JSON Schema Validator](https://github.com/ruby-json-schema/json-schema)というのがあったので実施したのが[現在のコード](https://github.com/cumet04/rails_ts_react/tree/json-schema)。  
 しかしtypescript-json-schemaとruby-json-schemaが扱うJSON Schemaのドラフトバージョンが一致しないため断念した。  
 ※rubyの方はDraft4までしかサポートせず（単に古い）、tsの方はschema versionが指定できない（コードに直書き）のでどうにもならない
 
