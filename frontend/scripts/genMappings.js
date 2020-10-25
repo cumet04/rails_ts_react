@@ -75,9 +75,8 @@ function generatePropMapping(mapping, filename) {
   const imports = mapping
     .map((pair, i) => `import {Props as props${i}} from "../src/${pair.file}"`)
     .join("\n");
-  // パス区切り文字はXに変換; quicktypeが生成するrubyクラス名に_などは含まれないため
   const declares = mapping
-    .map((pair, i) => `type ${pair.path.replace("/", "X")} = props${i}`)
+    .map((pair, i) => `type ${pair.path.replace("/", "_")} = props${i}`)
     .join("\n");
   fs.writeFileSync(
     filename,

@@ -4,6 +4,6 @@ import {Props as props1} from "../src/./pages/posts/_id/index"
 import {Props as props2} from "../src/./pages/posts/index"
 declare namespace PagePropsType {
 type index = props0
-type postsX_id = props1
+type posts__id = props1
 type posts = props2
 }
