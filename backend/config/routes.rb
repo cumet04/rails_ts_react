@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     root "home#index"
 
     resources :posts, only: [:index, :show]
+
+    namespace :api do
+      resources :posts, only: [:index, :show]
+    end
   end
 end
 
@@ -11,6 +15,7 @@ Rails.application.config._routing_map =
   Rails.application.routes.routes.map { |r|
     ActionDispatch::Routing::RouteWrapper.new(r)
   }.reject(&:internal?)
+    .reject { |r| r.endpoint.starts_with?("/api") }
     .to_h { |r|
     [
       r.endpoint,

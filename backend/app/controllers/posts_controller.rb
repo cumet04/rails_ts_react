@@ -1,22 +1,15 @@
 class PostsController < ApplicationController
   def index
-    posts = Post.all
-    view_props[:posts] = posts.map { |p| map_post(p) }
+    posts = PostsApi.index
+    view_props[:posts] = posts
   end
 
   def show
-    post = Post.find(params[:id])
-    view_props[:post] = map_post(post)
-  end
-
-  private
-
-  def map_post(post)
-    p = post
-    {
-      id: p.id,
-      title: p.title,
-      content: p.content
-    }
+    post = PostsApi.show(params[:id])
+    if post
+      view_props[:post] = post
+    else
+      head 404
+    end
   end
 end
