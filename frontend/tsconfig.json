@@ -2,7 +2,7 @@
   "include": ["src", "types"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "module": "esnext",
     "target": "esnext",
     "jsx": "preserve",
@@ -13,7 +13,6 @@
 
     "strict": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "importsNotUsedAsValues": "error"
+    "noUnusedParameters": true
   }
 }
