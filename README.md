@@ -46,3 +46,7 @@ forkして調整する。スキーマバージョンが変わるということ�
 Open**API**の仕様のため、本ユースケースの前提である「API-SPAではなくサーバサイドJSON render」式で使えるかが不明。
 
 開発の手数は増えるが流行に従ってAPI式にする選択肢もある。
+
+## 起動
+```
+env UID=$(id -u) GID=$(id -g) docker-compose up -V --build
