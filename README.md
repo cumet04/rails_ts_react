@@ -1,14 +1,45 @@
 # Rails TS React
+Rails + React/TS構成を色々といい感じにする仕組みを検討するサンドボックス
+
+## 開発環境
+```
+env UID=$(id -u) GID=$(id -g) docker-compose up -V --build
+./backend/bin/exec rails db:create
+./backend/bin/exec rails db:migrate
+```
+
+## フレームワーク
+あらかじめOpenAPIでSpecを定義してそこからあれこれする。
+
+### Rails側
+controllerはfrontendにわたすデータを`view_props`にてjson(hash)で渡し、view相当の部分は完全にReactで書く。
+このあたりは以前の試みとほぼ同様; https://qiita.com/cumet04/items/52cc84949a7ce9351317
+
+Viewに返すデータを生成するロジックは`app/api/**_api.rb`にて定義し、controllerではこれらを呼び出してhashに入れるに留める（testable, API schemaの観点から）。
+
+APIが返すデータフォーマットはOpenAPIのSpecで定義されており、これらはRack層にて[committee](https://github.com/interagent/committee)でvalidationされる（development, test環境のみ）。  
+APIでないページが返すデータはReact側のPageコンポーネントのPropsに合わせ、各属性にはAPIクラスの生成物を入れるようにする。
+
+Modelその他は通常通り。
+
+### React側
+Rails側のcontroller/actionに合わせたディレクトリ構造でPageコンポーネントを配置しておく。  
+
+OpenAPIのSpecから`api/generate.sh`にてAPIクライアントおよび型を生成し、Rails側からのデータ受け取りにはこれを活用する。
+
+---
+
+## 過去のアプローチ
 React/TSをview層としたRails-app（SPAではない）において、ReactのPage componentが受け取るpropsの型定義からRailsの対応するcontroller actionの出力をvalidateできないか、という試み
 
-**現状、試みは失敗している**がログとして残す
-
-## アプローチ
+**この試み最終的に失敗している**がログとして残す
 
 ### 型定義以外の自動化
 Railsのルーティング(controller action)とReactのPage componentのファイルパスを一致させ、マウントするコンポーネントの自動判別やpropsの受け取りを行っている。
 
 このあたりは以前の試みとほぼ同様; https://qiita.com/cumet04/items/52cc84949a7ce9351317
+
+※この部分は現在でも変わっていない
 
 ### 型定義の一本化
 React側でパラメータの型定義をやるのにRails側で似たような定義クラスみたいなものを二重定義したくない、またどうせ型定義があるならバリデーションしたい、というモチベーション。
@@ -31,22 +62,8 @@ rubyコードの生成はquicktypeでできるはずなので試みた。生成�
 しかしtypescript-json-schemaとruby-json-schemaが扱うJSON Schemaのドラフトバージョンが一致しないため断念した。  
 ※rubyの方はDraft4までしかサポートせず（単に古い）、tsの方はschema versionが指定できない（コードに直書き）のでどうにもならない
 
-## 今後の展望
-アイデアとモチベーションは悪くないと思うので、技術スタックを変えてやってみたい。
+### 所感
+アイデアとモチベーションは悪くないと思うのだが、JSON Schemaが古かったのかもしれない。  
+この方針で行くならtypescript-json-schemaをforkしてDraft4対応することになるが、そのあたりのメンテは積極的にはやりたくない。
 
-#### typescript-json-schemaをDraft4対応にして使う
-forkして調整する。スキーマバージョンが変わるということは機能などの調整も必要だと思われるので、そのあたりも含めて。
-
-現状のアーキテクチャを変えずにできて簡単そうな反面、{ruby|typescript}-json-schemaのメンテが必要になる。
-
-#### JSON Schemaを捨ててOpenAPIを使う
-既に勢いが感じられないJSON Schemaを捨て、より標準感の強いOpenAPIのエコシステムに乗っかる。
-
-**TSからの**変換はなさそうなので、OpenAPI specを書いてtsとrubyコードを生成することになると思われる。
-Open**API**の仕様のため、本ユースケースの前提である「API-SPAではなくサーバサイドJSON render」式で使えるかが不明。
-
-開発の手数は増えるが流行に従ってAPI式にする選択肢もある。
-
-## 起動
-```
-env UID=$(id -u) GID=$(id -g) docker-compose up -V --build
+周辺エコシステムを使いたいのであればOpenAPIやAPI+SPA式に寄せるなど流行に乗らねばならないのかもしれない。
