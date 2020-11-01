@@ -1,9 +1,12 @@
-openapi: '3.0.2'
+openapi: 3.0.2
 info:
   title: RailsTsReact
   version: '1.0'
+  contact:
+    name: cumet04
+  description: RailsTsReact
 servers:
-  - url: https://localhost:3000/api
+  - url: 'https://localhost:3000/api'
 paths:
   /posts:
     get:
@@ -15,8 +18,12 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/post'
-  /posts/{id}:
+                  $ref: '#/components/schemas/PostSummary'
+      description: available post list
+      tags:
+        - posts
+      operationId: get_posts
+  '/posts/{id}':
     get:
       parameters:
         - in: path
@@ -30,10 +37,26 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/post'
+                $ref: '#/components/schemas/Post'
+      description: post detail
+      operationId: get_posts_id
+      tags:
+        - posts
 components:
   schemas:
-    post:
+    PostSummary:
+      type: object
+      title: PostSummary
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+      required:
+        - id
+        - title
+    Post:
+      title: Post
       type: object
       properties:
         id:
@@ -42,4 +65,9 @@ components:
           type: string
         content:
           type: string
-      required: [id, title, content]
+      required:
+        - id
+        - title
+        - content
+tags:
+  - name: posts
