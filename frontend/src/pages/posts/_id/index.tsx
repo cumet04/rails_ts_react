@@ -1,7 +1,8 @@
 import React from "react";
+import { Post } from "api/models";
 
 export type Props = {
-  post: App.Post;
+  post: Post;
 };
 
 const _page: PageComponent<Props> = ({ props: { post } }) => {

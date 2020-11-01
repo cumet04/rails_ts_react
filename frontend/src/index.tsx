@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Pages } from "./_pages";
 import { App } from "./App";
-import "ress";
 
 const appDom = document.getElementById("app") as HTMLElement;
 const data = JSON.parse(appDom.dataset.appJson || "");
