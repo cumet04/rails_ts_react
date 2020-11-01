@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show]
 
     namespace :api do
+      get "users/current", to: "users#current"
+
       resources :posts, only: [:index, :show]
     end
   end

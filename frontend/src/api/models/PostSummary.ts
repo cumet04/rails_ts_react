@@ -16,34 +16,28 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Post
+ * @interface PostSummary
  */
-export interface Post {
+export interface PostSummary {
     /**
      * 
      * @type {number}
-     * @memberof Post
+     * @memberof PostSummary
      */
     id: number;
     /**
      * 
      * @type {string}
-     * @memberof Post
+     * @memberof PostSummary
      */
     title: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Post
-     */
-    content: string;
 }
 
-export function PostFromJSON(json: any): Post {
-    return PostFromJSONTyped(json, false);
+export function PostSummaryFromJSON(json: any): PostSummary {
+    return PostSummaryFromJSONTyped(json, false);
 }
 
-export function PostFromJSONTyped(json: any, ignoreDiscriminator: boolean): Post {
+export function PostSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean): PostSummary {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -51,11 +45,10 @@ export function PostFromJSONTyped(json: any, ignoreDiscriminator: boolean): Post
         
         'id': json['id'],
         'title': json['title'],
-        'content': json['content'],
     };
 }
 
-export function PostToJSON(value?: Post | null): any {
+export function PostSummaryToJSON(value?: PostSummary | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -66,7 +59,6 @@ export function PostToJSON(value?: Post | null): any {
         
         'id': value.id,
         'title': value.title,
-        'content': value.content,
     };
 }
 

@@ -16,46 +16,39 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Post
+ * @interface User
  */
-export interface Post {
+export interface User {
     /**
      * 
      * @type {number}
-     * @memberof Post
+     * @memberof User
      */
     id: number;
     /**
      * 
      * @type {string}
-     * @memberof Post
+     * @memberof User
      */
-    title: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Post
-     */
-    content: string;
+    name: string;
 }
 
-export function PostFromJSON(json: any): Post {
-    return PostFromJSONTyped(json, false);
+export function UserFromJSON(json: any): User {
+    return UserFromJSONTyped(json, false);
 }
 
-export function PostFromJSONTyped(json: any, ignoreDiscriminator: boolean): Post {
+export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'id': json['id'],
-        'title': json['title'],
-        'content': json['content'],
+        'name': json['name'],
     };
 }
 
-export function PostToJSON(value?: Post | null): any {
+export function UserToJSON(value?: User | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -65,8 +58,7 @@ export function PostToJSON(value?: Post | null): any {
     return {
         
         'id': value.id,
-        'title': value.title,
-        'content': value.content,
+        'name': value.name,
     };
 }
 

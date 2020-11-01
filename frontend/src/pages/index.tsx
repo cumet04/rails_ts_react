@@ -1,11 +1,8 @@
 import React from "react";
-
-type UserInfo = {
-  name: string;
-};
+import { User } from "api/models";
 
 export type Props = {
-  user: UserInfo;
+  user: User;
 };
 
 const _page: PageComponent<Props> = ({ props: { user } }) => {

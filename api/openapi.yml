@@ -22,7 +22,7 @@ paths:
       description: available post list
       tags:
         - posts
-      operationId: get_posts
+      operationId: get-posts
   '/posts/{id}':
     get:
       parameters:
@@ -39,9 +39,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/Post'
       description: post detail
-      operationId: get_posts_id
+      operationId: get-posts-id
       tags:
         - posts
+  /users/current:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      operationId: get-users-current
+      description: current user
 components:
   schemas:
     PostSummary:
@@ -69,5 +83,17 @@ components:
         - id
         - title
         - content
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+        - id
+        - name
 tags:
   - name: posts
+  - name: users
