@@ -1,7 +1,7 @@
 class PostsApi < ApplicationApi
   def self.index
     rsc = Post.all
-    rsc.map { |p| post_json(p) }
+    rsc.map { |p| post_summary_json(p) }
   end
 
   def self.show(id)
@@ -10,6 +10,14 @@ class PostsApi < ApplicationApi
   end
 
   private
+
+  def self.post_summary_json(post)
+    o = post
+    {
+      id: o.id,
+      title: o.title
+    }
+  end
 
   def self.post_json(post)
     o = post

@@ -21,13 +21,5 @@ Rails.application.configure do
 
   config.cache_store = :null_store
 
-  committee_params = {
-    schema_path: Rails.root.join("../api/openapi.yml").to_s,
-    prefix: "/api",
-    raise: true
-  }
-  config.middleware.use(Committee::Middleware::RequestValidation, committee_params)
-  config.middleware.use(Committee::Middleware::ResponseValidation, committee_params)
-
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
