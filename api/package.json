@@ -1,0 +1,9 @@
+{
+  "name": "api",
+  "scripts": {
+    "generate": "spot generate --contract api.ts --language yaml --generator openapi3 --out ."
+  },
+  "dependencies": {
+    "@airtasker/spot": "^1.3.0"
+  }
+}
