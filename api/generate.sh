@@ -12,6 +12,6 @@ docker run --rm -u "$(id -u):$(id -g)" -v $PWD:/local openapitools/openapi-gener
   -i /local/api/openapi.yml \
   -o /local/${destdir}
 
-# remove host from BASE_PATH for API client
-# FIXME: I want to not do such hack, want to achieve this with the generator's option or openapi.yml
-sed -i 's|https://localhost:3000||' $destdir/runtime.ts
+# replace host from BASE_PATH for API client
+# FIXME: spot is not support server/path-prefix, so replace explicitly
+sed -i 's|http://localhost|/api|' $destdir/runtime.ts
