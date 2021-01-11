@@ -1,0 +1,11 @@
+{
+  "folders": [
+    { "path": "." },
+    { "path": "./api" },
+    { "path": "./backend" },
+    { "path": "./frontend" }
+  ],
+  "settings": {
+    "ruby.format": "standard"
+  }
+}
